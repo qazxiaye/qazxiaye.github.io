@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-    <title><![CDATA[haha | XIA Ye]]></title>
-    <link href="http://qazxiaye.github.io/blog/categories/haha/atom.xml" rel="self"/>
+    <title><![CDATA[xixi | XIA Ye]]></title>
+    <link href="http://qazxiaye.github.io/blog/categories/xixi/atom.xml" rel="self"/>
     <link href="http://qazxiaye.github.io/"/>
     <updated>2016-07-11T21:07:40+02:00</updated>
     <id>http://qazxiaye.github.io/</id>
@@ -14,25 +14,20 @@
 
     
     <entry>
-        <title type="html"><![CDATA[test4]]></title>
-        <link href="http://qazxiaye.github.io/blog/4.html"/>
+        <title type="html"><![CDATA[test2]]></title>
+        <link href="http://qazxiaye.github.io/blog/2.html"/>
         <updated>2016-07-10T13:33:13+02:00</updated>
-        <id>http://qazxiaye.github.io/blog/4</id>
+        <id>http://qazxiaye.github.io/blog/2</id>
+        <content type="html"><![CDATA[<p>test</p>
+]]></content>
+    </entry>
+    
+    <entry>
+        <title type="html"><![CDATA[test]]></title>
+        <link href="http://qazxiaye.github.io/blog/1.html"/>
+        <updated>2016-07-10T13:33:13+02:00</updated>
+        <id>http://qazxiaye.github.io/blog/1</id>
         <content type="html"><![CDATA[<p>test
-test
-test
-test
-test
-test
-test
-test
-test
-test
-test
-test
-test
-test
-test
 test
 test
 test
@@ -47,6 +42,20 @@ test</p>
 <!-- more -->
 
 <p>test
+test
+test
+test
+test
+test
+test
+test
+test
+test
+test
+test
+test
+test
+test
 test
 test
 test
