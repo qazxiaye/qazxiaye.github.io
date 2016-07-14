@@ -130,6 +130,10 @@
 
 
 
+
+
+
+
 </article>
 
 
@@ -137,6 +141,25 @@
 
 
     
+
+        <div class ="post-donate">
+    <div id="donate_board" class="donate_bar">
+        <a id="btn_donate" href="javascript:;" title="打赏"></a>
+        <br>
+    </div>  
+
+    <div id="donate_guide" class="donate_bar hidden">
+        <img src="/images/alipay.png" title="支付宝" height="200" width="200">
+    </div>
+
+    <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function(){
+        $('#donate_board').addClass('hidden');
+        $('#donate_guide').removeClass('hidden');
+    }
+    </script>
+</div>
+
 
         
             <section>
