@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-    <title><![CDATA[XIA Ye]]></title>
-    <link href="http://qazxiaye.github.io/atom.xml" rel="self"/>
+    <title><![CDATA[雾计算 | XIA Ye]]></title>
+    <link href="http://qazxiaye.github.io/blog/categories/wu-ji-suan/atom.xml" rel="self"/>
     <link href="http://qazxiaye.github.io/"/>
     <updated>2016-07-16T23:07:27+02:00</updated>
     <id>http://qazxiaye.github.io/</id>
     <author>
         <name><![CDATA[XIA Ye]]></name>
         
-    </author>
+      </author>
     <generator uri="http://octopress.org/">Octopress</generator>
 
     

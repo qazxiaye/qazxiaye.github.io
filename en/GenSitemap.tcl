@@ -11,9 +11,9 @@ puts $out "<urlset xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:s
 
 proc WritePath {path} {
     global out url
-    puts $out "<url>"
-    puts $out "<loc>${url}${path}</loc>"
-    puts $out "</url>"
+    puts $out "  <url>"
+    puts $out "    <loc>${url}${path}</loc>"
+    puts $out "  </url>"
 }
 
 foreach f [exec find . -name \*.html] {
