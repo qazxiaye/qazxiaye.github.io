@@ -1,0 +1,75 @@
+%\documentclass[a4paper,11pt,twoside,final]{report}
+\documentclass[a4paper,11pt,final,openright]{report}
+% \usepackage[margin=1in,bindingoffset=.2in]{geometry}
+
+\usepackage[francais,english]{babel}
+\usepackage[french]{varioref}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[pdftex]{graphicx}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{amsthm}
+\usepackage[linesnumbered,boxruled,vlined]{algorithm2e}
+%\usepackage{stmaryrd}
+%\usepackage{amsthm}
+% \usepackage{enumitem}
+
+\newcommand{\reporttitle}{Heuristics for HTN Planning}     % Titre
+\newcommand{\reportauthor}{Ye \textsc{XIA}} % Auteur
+\newcommand{\reportsubject}{Master of Science in Informatics at Grenoble\\
+Option PDES} % Sujet
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\setlength{\parskip}{1ex} % Espace entre les paragraphes
+\setcounter{secnumdepth}{5}
+
+\hypersetup{
+    pdftitle={\reporttitle},%
+    pdfauthor={\reportauthor},%
+    pdfsubject={\reportsubject},%
+    pdfkeywords={rapport} {vos} {mots} {cl茅s}
+}
+
+\theoremstyle{definition} \newtheorem{definition}{Definition}
+%\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{r_assum}{Relexing Assumption}
+
+\newcounter{savepage}
+\begin{document}
+  \include{title}
+  
+  \thispagestyle{empty}
+  \mbox{}\newpage
+  
+  \pagenumbering{roman}
+  
+  \setcounter{page}{1}
+  \include{abstract}
+  \mbox{}\newpage
+  \include{acknowledgement}
+  \mbox{}\newpage
+  \tableofcontents
+  
+  \cleardoublepage
+  \setcounter{savepage}{\arabic{page}}
+  \pagenumbering{arabic}
+  
+  \include{intro}
+  \mbox{}\newpage
+  \include{chapter1}
+  \mbox{}\newpage
+  \include{chapter2}
+  \include{chapter5}
+  \include{chapter6}
+  \include{conclusion}
+  
+  \mbox{}\newpage
+  \include{bibliography}
+  \mbox{}\newpage
+  \include{appendix}
+\end{document}

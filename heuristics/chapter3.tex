@@ -1,0 +1,65 @@
+\chapter{Multiagent Planning}
+\label{chapter3}
+In Multiagent System (MAS), the phrase multiagent planning has a variety of meanings, it could be the planning process which is multiagent (i.e. plan $\emph{by}$ multiagent), it could also be the plan itself (i.e. the obtained plan is $\emph{for}$ multiagent, but the plan process is centralized), or both of planning process and the plan are multiagent.
+
+In our work, we would finally propose a HTN algorithm for multiagent planning, which is $\emph{by and for}$ a group of agents. Such an algorithm needs to plan in a distributed manner and coordinates all the agents. This introduces additional difficulties, however multiagent planning has great advantages: 
+\begin{itemize}\itemsep0pt \parskip0pt \parsep0pt
+\item[-]First, it enhances the robustness of the system, since it does not rely on any central planner. 
+\item[-]Second, it supports heterogeneous agents with local planning capacity, privacy, autonomy and interest. 
+\item[-]Third, it allows a more efficient reaction compared to centralized approach. 
+\item[-]Finally, it leads a natural path to divide the planning problem and parallelize the planning process.
+\end{itemize}
+
+\section{Phases of Multiagent Planning}
+\label{phases_multi}
+Solving a multiagent planning problem is divided into 6 general phases$\cite{intro_multi}$:
+\begin{itemize}
+\item[$\bullet$] \textbf{Goal and task allocation}: 
+It is the process to assign goals and tasks to agents.
+\item[$\bullet$] \textbf{Goal and task refinement}: 
+In this phase, the assigned global tasks or goals are refined, so that the refined tasks can be planned by a single agent locally.
+\item[$\bullet$] \textbf{Coordination before planning}: 
+This is a way to coordinate agents, which is before the creation of agents’ local plans. It creates social laws which every agent must follow, otherwise, exact interdependencies between tasks need to be figured out beforehand. It restricts agents’ behavior, and it reduces communication costs.
+\item[$\bullet$] \textbf{Decentralized planning}: 
+It is the local planning phase of the agents.
+\item[$\bullet$] \textbf{Coordination after planning}: \label{sec:Coordination_after_planning}
+This is another way to coordinate agents, This phase aims to construct a joint plan by coordinating the plans generated in the previous phase.
+\item[$\bullet$] \textbf{Plan execution}: 
+This phase is for online situation, in which the environment is dynamic, it is possible that agents need to re-plan during execution.
+%\item[]
+\end{itemize}
+Not all phases need to be included in a planning system, and the phases may be interleaved.
+
+\section{Multiagent Planning System}
+We have studied several multiagent planning systems, as follows:
+
+\subsection{IMPACTing SHOP}
+IMPACTing SHOP\cite{ishop} integrates SHOP and IMPACT\cite{Impact} multiagent environment. In this work, although the environment is a Multiagent System, the planning is centralized, and it supports only a single planner while other agents are considered as information sources. Among IMPACT agents, there exists some special agents such as: statistics agent, monitoring agent, supplier agent which is for supporting calling external functions; math agent which supports numerical expressions.
+
+To support the planner to interact with external agents (i.e. information sources), in the planning algorithm A-SHOP (agentized SHOP), the precondition and the effect of actions have been replaced with code-calls, a code-call is a function call to other IMPACT agent. Direct execution of these code-calls cause difficulties when the algorithm needs to backtrack, since code-calls affect other agents’ states. To solve this problem, a monitoring agent monitors the code-calls without executing them, the code-calls are actually applied only when the apply function is called.
+
+A code-call is arbitrary software function, thus the algorithm is sound and complete only when code-calls are $\emph{strongly safe}$, which guarantees the finiteness of a function call.
+
+\subsection{An Efficient Algorithm for Multiagent Plan Coordination\cite{multi1}}
+In $\emph{team planning}$ problem, agents are $\emph{tightly-coupled}$, i.e. there are many interactions among the agents. While in $\emph{loosely-coupled}$ problem, agents are nearly independent. Despite the difference, they share many common problems to solve, e.g. flaw repairing.
+
+Jeffrey and Edmund described Multiagent Plan Coordination Problems (MPCPs), in which each agent plan to achieve its individual goals, they share the same environment and they acts loosely-coupled. To coordinate the agents after the agents’ local planning (as the phase "Coordination after planning" in \autoref{sec:Coordination_after_planning}), it is needed to transform a combined inconsistent plan into a consistent one and to remove duplicating actions.
+
+An inconsistent plan is a plan with flaws. A flaw is an open-link or a threat in single agent planning problem. But in multiagent system, different agents can execute their actions in parallel, the model must be extended, Jeffrey and Edmund have proposed a new flaw: 
+
+\begin{itemize}
+\item[$\bullet$] \textbf{parallel step threat flaw}: two actions $a_i$ and $a_j$ of different agents are not ordered, but the effects of the two actions are not consistent, i.e. there exists a certain predicate p $\subseteq$ Effect($a_i$) while $\neg$p $\subseteq$ Effect($a_j$)
+%\item[$\bullet$] \textbf{plan step merge flaw}: there’s a causal link $a_i \stackrel{p}{\longrightarrow} a_j$, $a_i$ and $a_j$ belong to the same agent, there’s another action $a_k$ which belong to another agent. The predicate p is obtained by $a_k$ before the execution of $a_i$. For executing $a_j$, $a_i$ is no longer needed, this flaw indicates the case that $a_i$ could be considered as a duplicated action.
+\end{itemize}
+Their algorithm combines the local plans and repairs the flaws to find a consistent plan, it increases the max plan length step by step, so it will find the best solution (i.e. shortest plan).
+
+\subsection{A Unified Framework based on HTN and POP Approaches for Multi-Agent Planning\cite{multi2}}
+Damien and Humbert have proposed a multiagent planning model which cooperates agents for achieving a common goal. The system has combined the advantages of POP and HTN, POP is adapted to concurrent planning in distributed environment, HTN has advantages in both efficiency and expressivity. Agents’ partial knowledge and heterogeneous skills are also supported in the system.
+
+The system plans for achieving a given goal state G, all the agents search within a global shared search space. The search space is represented with a Directed Acyclic Graph (DAG), whose nodes are partial plans. The nodes are allowed to contain flaws which are considered as promises, the flaws become new goals in the following planning. Each agent can refine, refute or repair a partial plan (i.e. a node in the DAG), and records other agents’ propositions. 
+
+The initial plan is the same as in Classical POP (explained in \autoref{HiPOP}). Then in each iteration of the algorithm, one of the $\emph{non-terminal plans}$ (i.e. at least one refining or repair or refutation is applicable) which is not yet explored will be chosen. If the chosen plan does not contain any flaw, the agent proposes a “success”. Otherwise, one of its flaws will be chosen, if the flaw is an open-link, it will be solved by adding a causal link or by the HTN-based refinement mechanism; if the flaw is a threat, the system will try to repair it. All the generated plans for solving a flaw are added in the DAG.
+
+When an agent proposes a “success” (resp. failure) and wait for responses of other agents, the other agents verify whether the proposed plan is a solution plan (resp. whether this agent is not able to provide a possible solution) with their own knowledge. If the proposition is accepted by all the agents, the planning process ends. Otherwise, the system goes back to the planning phase.
+
+The system is both sound and complete. The solution plan is partially-ordered. A* algorithm is applied as the plan heuristic. For flaw heuristic, a flaw with the fewest resolvers will be chosen. 

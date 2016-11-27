@@ -1,0 +1,199 @@
+\chapter{Hierarchical Task Networks Planning}
+
+Hierarchical Task Network (HTN) planning is quite similar to classical planning \autoref{chapter1}: each state of the world is represented by a set of atoms, and each action defines a deterministic state trabsition. However, HTN planning techniques differs from classical planning approaches in what they plan for and how they plan for it. 
+
+In HTN planning, the objective is not to reach a set of goals but instead to perform some set of {\em tasks}. The input of the planning process is a set of operators of action similar to those used in classical planning but also a set of {\em methods}. Each method is a prescription for how to decompose some tasks into some set of {\em subtasks}, i.e., smaller tasks. Planning process proceeds by decomposing {\em non primitive} tasks into smaller and smaller tasks, until {\em primitive} tasks are achieved that can be performed directly by a classical planning operator.
+
+HTN planning has been widely used for prcatical applications. This is partly because HTN methods provide a convenient way to write problem-solving ``recipe'' how a human domain expert might think about solving a planning problem.
+
+The rest of this chapter is organised as follows. Section~\ref{Sec:Example} introduces our blocksworld running example in HTN manner. Section~\ref{Sec:STN} presents a simple version of HTN call Simple Tasks Networks (STN) planning techniques. Section~\ref{Sec:HTN} 
+
+\section{Definitions and Principles}
+\label{Sec:HNT}
+
+This section describes a language for a abstract HTN planning procedure. Our definitions of termes, literals, operators, actions, and plans are the same of classical planning. The definition of of $\gamma(s,a)$. the result of applying an actions $a$ to a state $s$, is also the same as classical planning. However, the language includes tasks, methods, tasks networks, which are used in the definition of a plannind problem and its solutions.
+
+\subsection{Tasks Methods and Task Network}
+
+One new kind of symbol is a {\em task nsymbol}. Every operator symbol is a task symbol, and there are some additional task symbols called {\em non-primitive task symbols}. A {\em task} is an expression of the form $t(r_1,\ldots, r_k)$ such that $t$ is a task symbol, and $r_1, \ldots, r_k$ are terms. If $t$ is an operator symbol, then the task is {\em primitive}; otherwise, it is {\em non-primitive}. The task is {\em ground} if all the terms are ground: otherwise, it is {\em unground}. An action $a = (name(a), precond(a), effect(a))$ {\em accomplishes} a ground primitive task $t$ in a state $s$ if $name(a) = t$ and $a$ is applicable to $s$. 
+
+A {\em task networks} is a pair $w = (U, C)$, where $U$ is a set of tasks and $C$ is a set of constraints. Each constrain in $C$ specifies a requirement that must be satisfied by every plan that is a solution to a planning problem. Here are the kinds of constraints considered:
+\begin{itemize}
+\item A {\em precedence constraint} is an expression of the form $u \prec v$, where $u$ and $v$ are tasks. It means that $u$ must preced $v$ in every solution $\pi$ for $w$. %%% GIVE A EXAMPLE FOR BLOCKWORKS
+\item A {\em before constraints} is a constraint of the form $before(U', l)$ where $U' \subseteq U$ is a set of tasks and $l$ is a literal. It says that the literal $l$ must be true in the state that occurs just before the first task of $U'$ in every solution $\pi$ for $w$. %%% GIVE A EXAMPLE FOR BLOCKWORKS
+\item A {\em after constraints} is a constraint of the form $after(U', l)$ where $U' \subseteq U$ is a set of tasks and $l$ is a literal. It says that the literal $l$ must be true in the state that occurs just after the task of $U'$ in every solution $\pi$ for $w$. 
+\item A {\em between constraints} has the form $between(U',U'', l)$ where $U' \subseteq U$ and $U'' \subseteq U$ are two sets of tasks and $l$ is a literal. It says that the literal $l$ must be true in the state that occurs just after the last task of $U'$ and before the first task of $U''$ and between all the state in between for in every solution $\pi$ for $w$. 
+\end{itemize}
+
+A {\em method} is a 4-tuple $m = (name(m), task(m), subtasks(m), constr(m))$ in which the elements are described as follows:
+\begin{itemize}
+\item $name(m)$ is an expression of the $n(x_1, \ldots, x_k)$ where $n$ is a unique method symbol, i.e., no two methods in the planning domain can have the same method symbol), and $x_1, \ldots, x_k$ are all of the varovle symmbols that occurs anywhere in $m$.
+\item $task(m)$ is a non primitive task.
+\item $(subtasks(m, const(m))$ is a task network.  
+\end{itemize}
+
+Suppose that $w = (U,C)$ is a task network, $u \in U$ is a task, $m$ is an instance of a method in $M$ and $task(m) = u$. Then $m$ {\em decompose} $u$ into $subtask(m')$, producing the task network
+$$
+\sigma(w,u,m) = ((U \ - \ \{u\}) \ \cup \ subtask(m'), \ C' \ \cup \ const(m'))
+$$
+where $C'$ is the following modified version of $C$:
+\begin{itemize}
+\item For every precedence contraint that contains $u$, replace it with precedence contraints containing the tasks in $subtasks(m')$. For example, if $subtask(m') = \{u_1, u_2\}$, then we would replace the contsraint $u \prec v$ with the constraints $u_1 \prec v$ and $u_2 \prec v$.
+\item For every before, after, and between contraint in which there is a set of tasks $U'$ that contains $u$, replace $U'$ with $(U' \ - \ \{u\}) \cup subtasks(m')$. For example, if $subtasks(m') = \{u_1, u_2\}$, then we would replace the contraint $before(\{u, v\}, l)$ with the constraint $before(\{u_1, u-_2, v\}, l)$ 
+\end{itemize}
+
+\paragraph*{Example} 
+\begin{itemize}
+\item GIVE A EXAMPLE FOR BLOCKWOKS AND COMMENT IT
+\item GIVE THE DECOMPOSITION TREE OF METHOD
+\end{itemize}
+
+\subsection{Problem and Solution}
+
+An HTN planning problem is a 4-tuple ${\cal{P}} = (s_0, w, O, M)$ where $s_0$ is the initial state, $w$ is the initial task network, $O$ is the set of operators, and $M$ is the set of the HTN methods.
+
+We now define what it means for a plan $\pi$ to be a solution for $\cal{P}$. There are two cases, depending on whether $w$ is primitive or non-primitive.
+
+WRITE THE DEFINITION 11.12 FROM GHALLAB'S BOOK
+
+\paragraph*{Example} 
+\begin{itemize}
+\item GIVE A EXAMPLE FOR BLOCKWOKS PROBLEM AND COMMENT IT
+\end{itemize}
+
+\subsection{Abstract HTN Procedure}
+
+\begin{itemize}
+\item COMMENT THE PROCEDURE \ref{Algo:HTN}.
+\item SAYS THAT NON DETERMINISTIC CHOICE WILL EXPLAIN IN THE NEXT CHAPTER
+\end{itemize}
+
+\begin{algorithm}[H] 
+
+\caption{Abstract HTN Planning Procedure}
+\label{Algo:HTN}
+
+\SetKwFunction{HeuristicForwardSearch}{Heuristic-forward-Search}
+\SetKwData{Failure}{failure}
+\SetKwData{Active}{active}
+\SetKwData{Open}{open}
+
+
+let ${\cal{P}} = (s_0, w, O, M)$ the planning to solve \;
+\Open $\leftarrow$ an empty list of task networks \;
+
+Add $w$ to \Open \;
+
+\While{\Open $\ne \emptyset$} {
+  nondeterministically choose a task network $\nu \in \Open$ \;
+  \eIf{$\nu = (U, C)$ is primitive and ground}{
+    \lIf{all constraints in $C$ are satisfied}{\Return $\nu$} \;
+    \lElse{\Return \Failure} \;
+  }{
+    nondeterministically choose a task $u \in \nu$ \;
+    \Active $\leftarrow \{ m \in M \ | \ task(m)$ is unifiable with $u \}$ \;
+    \If{$\Active = \emptyset$}{
+      \ForAll{method $m \in \Active$}{
+        $\mu \leftarrow ((U \ - \ \{u\}) \ \cup \ subtask(m'), \ C' \ \cup \ const(m'))$ \;
+        add $\mu$ to \Open\;
+      }
+    } 
+  }
+  \Return \Failure \;
+}
+
+\end{algorithm}
+
+
+
+\section{Related Works}
+\label{Sec:Related-works}
+
+
+The basic ideas of HTN planning were first developped more that 25 years ago in works by Sacerdoti [Add ref 460 Ghallab's book] and in Tate's Nonlin planner [Add ref 503 Ghallab's book]. HTN planning has been more widely used in planning applications than any other classical planning techniques, e.g., in production line scheduling  [Add ref 549 Ghallab's book], crisis management and logistics [Add ref 72, 135 Ghallab's book], etc.
+
+The first steps toward a theorical model of HTN plannning were taken by Yang [Add ref 558 Ghallab's book] and Kambhampati [Add ref 301 Ghallab's book]. A complete model was developped by Erol [Add ref 174 Ghallab's book]. This model provided the basis for complexity analysis [Add ref 175 Ghallab's book] and the first provably correct HTN planning procedure (the plannning procedure \ref{Algo:HTN} is based on this work). 
+
+The best-knows domain-independent HTN planning systems are listed below.
+
+\paragraph*{UCMP}
+
+[Add ref 174 Ghallab's book] is an implementation of the first provably sound and complete HTN planning alpgorithm. UMCP searches by iterative refinements a non primitive task network to a primitive one. In each iteration, a non-primitive task is selected non-deterministically, one of its relevant methods will be chosen to refine it, then according to this refinement, a new task networks is created. Once a primitive task network is created, it will be returned if all the constraints of the problem are satisfied, or the planner backtracks. To reduce the amount of backtracking, UMCP calls a function for detecting and resolving the flaws caused by interactions among tasks.
+
+\paragraph*{SHOP}
+
+\cite{4} \cite{4_1} (Simple Hierarchical Ordered Planner) plans for tasks in the same order as their execution, thus it can always keep track of world-state during the planning process. With the knowledge of the current state, SHOP gains planning efficiency, it refines non-primitive tasks only with the available methods (i.e. a method whose precondition and also the precondition of the first task of the method’s refinement are satisfied), so that the search space is reduced compared to UMCP; it also gains expressive power, since the knowledge of current world-state allows using $\emph{dynamic expressions}$ (e.g. numeric expressions, calling external programs). But these features force SHOP to do a forward search from the first task to the last one as the tasks’ execution order, and the result plan is limited to be totally ordered. SHOP is sound and complete, but it suffers from backtracking. When there is no applicable method to decompose a non-primitive task, it backtracks to guarantee the completeness. There may be several possible ways to decompose a non-primitive task, backtracking happens after a non-primitive task has not been decomposed with the proper method. However, in SHOP, methods are chosen nondeterministically, and it is hard to decide which node in the search space to backtrack to. 
+
+\paragraph*{M-SHOP}
+
+\cite{5} (Multi-task-list SHOP) generalizes SHOP by allowing the initial HTN to be partially ordered, thus the refinements of non-primitive tasks may be interleaved when executing the plan. The interleaving allows removing duplicated actions. M-SHOP does not guarantee to remove all the duplicated actions, and the solution plan is not guaranteed to be optimal (i.e. result plan with smallest length). The interleaving may cause task-interaction issues. To deal with the issue, in M-SHOP, $\emph{protection request}$ and $\emph{protection cancellation}$ are defined in actions’ effect. A protection request is to guarantee a predicate. The predicate guaranteed must be satisfied before the protection is canceled. M-SHOP uses a global list to store the protection list. 
+
+\paragraph*{GoDel}
+
+\cite{godel} (Goal Decomposition with Landmarks) is motivated by the fact that planners have methods which only solve some subproblems, but not the top-level problems. Instead of a HTN, GoDeL uses a goal network as input. A {\em goal network} is a partial order network which guides the algorithm to achieve the final goal step by step, each node in the network is a world state, the final node is the final goal state. The definition of method in GoDeL is also different, it does not have the sub task network to refine to, instead, it has a sub goal network to indicate the steps to achieve the goal. In GoDeL, both methods and $\emph{subgoal inference}$ are used to decompose a task to sub-tasks (i.e. add subgoals into the goal network). Subgoal inference is based on landmarks. A {\em landmark} for a planning problem P is a fact that is true at some point in every plan that solves P, so it is considered as a subgoal that every solution to P must satisfy at some point. The algorithm performs a forward search from the initial state, it keeps track of the current state. By combining classical planning and HTN planning, GoDeL supports incomplete domains, no matter the domain knowledge is complete, it is always sound and complete. 
+
+
+\paragraph*{Angelic}
+
+The basic idea of Angelic \cite{angelic1} is to plan at a high-level. Angelic needs an additionnal goal description $G$ (a set of literals) to resolve a planning problem and two sets of reachable states called Overstated (i.e. superset) and Understated (i.e. subset). These two sets can be considered as $\emph{MAY}$ and $\emph{MUST}$ reachable states respectively. If $\emph{MUST}$ $\subseteq$ G, ADD A VERB then arbitrary implementation of the HTN achieves the goal. If $\emph{MAY}$ $\cap$ $G = \emptyset$, there is no need to continue to refine the plan which will never lead to the goal state. With deeper refining, a non-primitive task’s reachable states will be exacter, so when goal state is in $\emph{MAY}$ but not in $\emph{MUST}$, the non-primitive tasks in the plan need to be refined. 
+
+The algorithm does a top-down, forward search (i.e. from the top-level non-primitive task to a primitive plan, from the first task to the last one as the tasks’ execution order), it is sound and complete, and the plan is totally-ordered. With the help of non-primitive task description, refining is performed only when it is necessary, so that the algorithm can avoid backtracking.
+
+The extended version$\cite{angelic2}$ of Angelic considers cost of actions, it generates provably optimal plans or generate nearly optimal plans with better performance. Its heuristic is inspired from A* algorithm, the heuristics use the data structure of $\emph{abstract lookahead tree}$ (i.e. lookahead tree adapted for non-primitive task). The algorithm’s basic idea is the same to the original version, each node of the abstract lookahead tree has an $\emph{optimistic cost}$ and a $\emph{pessimistic cost}$, the optimistic cost will be infinite for the nodes from which the goal states is unreachable. So the plan with the lowest optimistic cost will be refined prior to others. When an exact cost is obtained, the plans whose optimistic cost is greater than the obtained value will no longer be considered.
+
+\paragraph*{Yoyo}
+The main idea of Yoyo\cite{yoyo} is to combine HTN with BDD (Binary Decision Diagram) for planning in nondeterministic domain. In nondeterministic domain, each action may have several alternative effects (i.e. the actual effect of an action is randomized), but the plan must work despite the nondeterminism, so all possible effects (or all possible following states) must be considered, any state which leads to a $\emph{dead end}$ (i.e. no further refining can be done, but the goal state is not yet achieved) forces the algorithm to return a failure. 
+
+To guarantee that every execution path (multiple execution path is caused by different action effect) leads to the goal state, the returned plan is also different from other planners, it returns a list of situations (a situation is a pair of state and action), it indicates appropriate action according to the observed state. Yoyo does a forward search, in each iteration of the algorithm, it chooses a task without predecessor in the HTN, and it searches with the knowledge of the current state, so only applicable actions are considered in each step. Yoyo is both sound and complete. 
+
+BDD is used to represent a set of states in Yoyo. With the help of BDD, Yoyo realizes a set-based search, so that it avoids to search for each state separately and gains efficiency. To represent a set of states, the BDD does not need to list the propositions for which both arcs lead to the same terminal node, so an appropriate use of BDD also reduces the memory consumption.
+
+\paragraph*{HiPOP}
+
+\cite{hipop} (Hierarchical Partial-Order Planner) combines HTN and partial order planning (POP) [Add ref 50 Ghallab's book]. It supports optional user-defined non-primitive tasks and methods. HiPOP is both sound and complete. 
+
+If there is no non-primitive task defined, HiPOP works the same as a classical POP algorithm. The initial plan of classical POP consists of two dummy actions $a_s$ and $a_e$, $a_s$ is the first action of the result plan, and $a_e$ is the last one. Precondition($a_s$) $=$ $\emptyset$, Effect($a_s$) $=$ I; Precondition($a_e$) $=$ G, Effect($a_e$) $=$ $\emptyset$. Obviously, if $I \not\in G$, the plan is initialized with an open-link to repair. All generated plans for repairing a flaw are inserted into an open plan list. For each iteration, a plan which is not yet explored in the open list will be chosen and removed from the open list. According to the heuristics, the chosen plan should be the one which is most likely to be a solution. If the chosen plan does not contain any flaw, it will be returned. Otherwise, one of its flaws will be chosen and repaired. The algorithm stops and returns failure if the open list has been empty while no solution is found.
+
+Extended from classical POP, HiPOP plans with non-primitive task. Each non-primitive task is considered as an $\emph{abstract flaw}$, so a solution plan must be primitive. To take the advantage of non-primitive task, only non-primitive task is allowed to be directly added into the plan for repairing flaws, primitive actions can only be added through refining. In this way, through the additional knowledge provided by methods, the planning is guided as much as possible.
+
+A* algorithm has been used as the plan heuristic. For flaw heuristic, the general order is: threat > open-link > abstract flaw (a > b means that a is prior to b), threats with the fewest resolvers will be solved firstly. Generally, open-links is solved earlier than abstract flaws, so that the algorithm deals with smaller plans during search process. Otherwise, after all the refining have been done, a huge plan with many flaws is likely to be generated.
+
+\paragraph*{IMPACTing SHOP}
+IMPACTing SHOP \cite{ishop} integrates SHOP and IMPACT \cite{Impact} multiagent environment. In this work, although the environment is a Multiagent System, the planning is centralized, and it supports only a single planner while other agents are considered as information sources. Among IMPACT agents, there exists some special agents such as: statistics agent, monitoring agent, supplier agent which is for supporting calling external functions; math agent which supports numerical expressions.
+
+To support the planner to interact with external agents (i.e. information sources), in the planning algorithm A-SHOP (agentized SHOP), the precondition and the effect of actions have been replaced with code-calls, a code-call is a function call to other IMPACT agent. Direct execution of these code-calls cause difficulties when the algorithm needs to backtrack, since code-calls affect other agents’ states. To solve this problem, a monitoring agent monitors the code-calls without executing them, the code-calls are actually applied only when the apply function is called.
+
+A code-call is arbitrary software function, thus the algorithm is sound and complete only when code-calls are $\emph{strongly safe}$, which guarantees the finiteness of a function call.
+
+\subsubsection*{CoRe Plannner}
+
+D. Pellier and H. Fiorino\cite{multi2} have proposed a multiagent planning model which cooperates agents for achieving a common goal. The system has combined the advantages of POP and HTN, POP is adapted to concurrent planning in distributed environment, HTN has advantages in both efficiency and expressivity. Agents’ partial knowledge and heterogeneous skills are also supported in the system.
+
+The system plans for achieving a given goal state G, all the agents search within a global shared search space. The search space is represented with a Directed Acyclic Graph (DAG), whose nodes are partial plans. The nodes are allowed to contain flaws which are considered as promises, the flaws become new goals in the following planning. Each agent can refine, refute or repair a partial plan (i.e. a node in the DAG), and records other agents’ propositions. 
+
+The initial plan is the same as in Classical POP (explained in \autoref{HiPOP}). Then in each iteration of the algorithm, one of the $\emph{non-terminal plans}$ (i.e. at least one refining or repair or refutation is applicable) which is not yet explored will be chosen. If the chosen plan does not contain any flaw, the agent proposes a “success”. Otherwise, one of its flaws will be chosen, if the flaw is an open-link, it will be solved by adding a causal link or by the HTN-based refinement mechanism; if the flaw is a threat, the system will try to repair it. All the generated plans for solving a flaw are added in the DAG.
+
+When an agent proposes a “success” (resp. failure) and wait for responses of other agents, the other agents verify whether the proposed plan is a solution plan (resp. whether this agent is not able to provide a possible solution) with their own knowledge. If the proposition is accepted by all the agents, the planning process ends. Otherwise, the system goes back to the planning phase.
+
+The system is both sound and complete. The solution plan is partially-ordered. A* algorithm is applied as the plan heuristic. For flaw heuristic, a flaw with the fewest resolvers will be chosen. 
+
+\section{Discussion}
+\label{Sec:Discussion}
+
+\subsection{Complexity results}
+
+ADD AND COMMENT THE TABLE 11.1 of Ghallab's book
+
+\subsection{Avantages and disavantages}
+
+Compared with classical planners, the primary advantage of HTN planner is their sophicaled knowledge representation and reasonning capabilities. They can represent and solve a variety of nonclassical planning problems. With a good set of methods, HTN planners can solve classical planning of problems orders of magnitude more quickly than classical planners. The primary disadvantage of this type of planners is the need for the domai author to write not only a set of planning operators but also a set of methods.
+
+
+\section{Conclusion}
+
+Among the planners we have studied, SHOP, M-SHOP, GoDeL, Angelic, Yoyo and IMPACTing SHOP keep track of world-state, they do forward search from the initial state step by step. They lose flexibility, but they gain efficiency, since only available methods will be applied. UMCP chooses arbitrary non-primitive task in a HTN to refine, but it is not as efficient as the planners like SHOP. HiPOP and the unified framework proposed by D. Pellier and H. Fiorino both based on POP and HTN, they repair flaws during the planning process, which do not require exact world states, but they are rather POP planners, POP is the base of their planning process, HTN is only a strategy to increase the efficiency; HTN plays different roles in the two systems, HiPOP uses HTN to support abstract action, the other one use HTN to help flaw repairing.
+
+Some of these planners’ basic ideas are as follows: SHOP simplifies the planning process to be in the same order as execution. M-SHOP allows un-ordered tasks in initial HTN. GoDeL combines HTN with classical planning to support incomplete domain. Angelic avoids backtracking through HLA description. Yoyo combines HTN with BDD to support non-deterministic domain. IMPACTing SHOP combines SHOP with IMPACT to support multiple information sources. Both the unified framework and HiPOP combine POP with HTN, the former one is a multiagent planning system, the current version of the latter one only supports single agent planning.
+
+YOU HAVE TO TALK ABOUT THE LACK OF HEURISTICS FOR HTN PLANNING THAT WHY YOU WORK ON IT.
+
