@@ -49,12 +49,32 @@
         <li><a href="/en/cv/">C.V.</a></li>
         <li><a href="/en/contact/">Contact</a></li>
     
+
     <script type="text/javascript">
-    cn2en = function(){
-        window.location.href = "/en/blog/categories/xixi/index.html";
+    cn2en = function()
+    {
+        var str = "/blog/categories/xixi/index.html";
+        if(str.indexof("blog") > 0)
+        {
+            window.location.href = "/en/blog";
+        }
+        else
+        {
+            window.location.href = "/en/blog/categories/xixi/index.html";
+        }
     }
-    en2cn = function(){
-        window.location.href = "/blog/categories/xixi/index.html";
+
+    en2cn = function()
+    {
+        var str = "/blog/categories/xixi/index.html";
+        if(str.indexof("blog") > 0)
+        {
+            window.location.href = "/blog";
+        }
+        else
+        {
+            window.location.href = "/blog/categories/xixi/index.html";
+        }
     }
     </script>
 </ul>

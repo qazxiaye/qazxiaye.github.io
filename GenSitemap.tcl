@@ -5,7 +5,7 @@ exec tclsh "$0" ${1+"$@"}
 set url "http://qazxiaye.github.io"
 cd public
 
-set out [open ../public/sitemap.xml w+]
+set out [open sitemap.xml w+]
 puts $out "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 puts $out "<urlset xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd\" xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">"
 

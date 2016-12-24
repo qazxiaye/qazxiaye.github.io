@@ -49,12 +49,32 @@
         <li><a href="/cv/">简历</a></li>
         <li><a href="/contact/">联系方式</a></li>
     
+
     <script type="text/javascript">
-    cn2en = function(){
-        window.location.href = "/en/blog/fog-computing.html";
+    cn2en = function()
+    {
+        var str = "/blog/fog-computing.html";
+        if(str.indexof("blog") > 0)
+        {
+            window.location.href = "/en/blog";
+        }
+        else
+        {
+            window.location.href = "/en/blog/fog-computing.html";
+        }
     }
-    en2cn = function(){
-        window.location.href = "/blog/fog-computing.html";
+
+    en2cn = function()
+    {
+        var str = "/blog/fog-computing.html";
+        if(str.indexof("blog") > 0)
+        {
+            window.location.href = "/blog";
+        }
+        else
+        {
+            window.location.href = "/blog/fog-computing.html";
+        }
     }
     </script>
 </ul>

@@ -69,12 +69,32 @@ test &hellip;">
         <li><a href="/en/cv/">C.V.</a></li>
         <li><a href="/en/contact/">Contact</a></li>
     
+
     <script type="text/javascript">
-    cn2en = function(){
-        window.location.href = "/en/blog/4.html";
+    cn2en = function()
+    {
+        var str = "/blog/4.html";
+        if(str.indexof("blog") > 0)
+        {
+            window.location.href = "/en/blog";
+        }
+        else
+        {
+            window.location.href = "/en/blog/4.html";
+        }
     }
-    en2cn = function(){
-        window.location.href = "/blog/4.html";
+
+    en2cn = function()
+    {
+        var str = "/blog/4.html";
+        if(str.indexof("blog") > 0)
+        {
+            window.location.href = "/blog";
+        }
+        else
+        {
+            window.location.href = "/blog/4.html";
+        }
     }
     </script>
 </ul>
