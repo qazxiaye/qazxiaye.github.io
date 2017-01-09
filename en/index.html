@@ -24,6 +24,16 @@
         <link href="/favicon.png" rel="icon">
         <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet">
         <link href="/atom.xml" rel="alternate" title="XIA Ye" type="application/atom+xml">
+
+        <style>p.indent{ padding-left: 1.8em; padding-right: 1.8em }</style>
+
+        <style> 
+            table {
+                table-layout: fixed;
+                border-spacing: 0px;
+                width: 100%;
+            }
+        </style>
     </head>
 
 
@@ -46,25 +56,31 @@
         <li><a href="#" onclick="en2cn();return false;">中文</a></li>
         <li><a href="/en">Home</a></li>
         <li><a href="/en/blog/">Blog</a></li>
-        <li><a href="/en/cv/">C.V.</a></li>
-        <li><a href="/en/contact/">Contact</a></li>
     
 
     <script type="text/javascript">
-    cn2en = function() {
+    function cn2en()
+    {
         var str = "/index.html";
-        if(str.indexOf("blog") > 0) {
+        if(str.indexOf("blog") > 0)
+        {
             window.location.href = "/en/blog";
-        } else {
+        }
+        else
+        {
             window.location.href = "/en/index.html";
         }
     }
 
-    en2cn = function() {
+    function en2cn()
+    {
         var str = "/index.html";
-        if(str.indexOf("blog") > 0) {
+        if(str.indexOf("blog") > 0)
+        {
             window.location.href = "/blog";
-        } else {
+        }
+        else
+        {
             window.location.href = "/index.html";
         }
     }
@@ -107,10 +123,31 @@
     </div>
 </div>
 
+
+                <table>
+                    <tr>
+                        <td><center>
+    
+        <img src="/images/mail_en.png" name="contact"/>
+    
+</center>
+</td>
+                        <td><h4 class="post">
+    <center>
+        
+            CV : 
+            <a href="/downloads/cv/CV_en.pdf">English</a>,
+            <a href="/downloads/cv/CV_fr.pdf">French</a>
+        
+    </center>
+</h4>
+</td>
+                    </tr>
+                </table>
+
                 
 <section class="social col-xs-12 col-sm-6 col-md-12">
-    <h1>
-    </h1>
+    <br>
     <ul class="unstyled">
         <li><a class="github" href="//github.com/qazxiaye"><i class="fa fa-github"></i> Github</a></li>
         <li><a class="linkedin" href="//linkedin.com/in/xia-ye-092a598b"><i class="fa fa-linkedin-square"></i> LinkedIn</a></li>
@@ -119,6 +156,7 @@
         <li><a class="zhihu" href="//zhihu.com/people/xia-ye"><i class="fa fa-zhihu"></i> 知乎</a></li>
         <li><a class="facebook" href="//facebook.com/xavier.xia.3"><i class="fa fa-facebook-square"></i> Facebook</a></li>
     </ul>
+    <br>
 </section>
 
 
@@ -198,8 +236,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <p class="footer__copyright">
     
-        All content copyright @ XIA Ye (Xavier).<br>
-        Powered by <a href="//github.com/coogie/oscailte/">oscailte theme</a>.
+        All content copyright @ XIA Ye (Xavier).
     
 </p>
 
