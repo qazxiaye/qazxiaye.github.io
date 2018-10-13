@@ -1,0 +1,15 @@
+Binary file ./.git/index matches
+./_includes/custom/navigation.html:        <li><a href="{{ root_url }}/pub_talk/">发表</a></li>
+./_includes/custom/navigation.html:        <li><a href="{{ root_url }}/en/pub_talk/">Pub & Talk</a></li>
+./pub_talk/index.html:title: "pub & talk"
+./pub_talk/index.html:        Combining Hardware Nodes and Software Components Ordering-based Heuristics for Optimizing the Placement of Distributed IoT Applications in the Fog, <a href="https://www.researchgate.net/profile/Ye_Xia5/publication/326164598_Combining_hardware_nodes_and_software_components_ordering-based_heuristics_for_optimizing_the_placement_of_distributed_IoT_applications_in_the_fog/links/5b582952458515c4b2436c89/Combining-hardware-nodes-and-software-components-ordering-based-heuristics-for-optimizing-the-placement-of-distributed-IoT-applications-in-the-fog.pdf">pdf</a>, <a href="{{ root_url }}/downloads/talk/paper1.pdf">slides</a><br>
+./pub_talk/index.html:    Combining Heuristics to Optimize and Scale the Placement of IoT Applications in the Fog, <a href="{{ root_url }}/downloads/talk/paper2.pdf">slides</a>
+./pub_talk/index.html:        ASF Winter School, 7-10 March 2017 ( <a href="{{ root_url }}/downloads/talk/ASF-Ye_XIA.pdf">slides</a> )
+./pub_talk/index.html:        <a href="https://beyondtheclouds.github.io/">Discovery</a> 3rd Plenary Meeting, 30-31 March 2017 ( <a href="{{ root_url }}/downloads/talk/Discovery_3rd-Ye_XIA.pdf">slides</a> )
+_includes/custom/navigation.html:        <li><a href="{{ root_url }}/pub_talk/">发表</a></li>
+_includes/custom/navigation.html:        <li><a href="{{ root_url }}/en/pub_talk/">Pub & Talk</a></li>
+pub_talk/index.html:title: "pub & talk"
+pub_talk/index.html:        Combining Hardware Nodes and Software Components Ordering-based Heuristics for Optimizing the Placement of Distributed IoT Applications in the Fog, <a href="https://www.researchgate.net/profile/Ye_Xia5/publication/326164598_Combining_hardware_nodes_and_software_components_ordering-based_heuristics_for_optimizing_the_placement_of_distributed_IoT_applications_in_the_fog/links/5b582952458515c4b2436c89/Combining-hardware-nodes-and-software-components-ordering-based-heuristics-for-optimizing-the-placement-of-distributed-IoT-applications-in-the-fog.pdf">pdf</a>, <a href="{{ root_url }}/downloads/talk/paper1.pdf">slides</a><br>
+pub_talk/index.html:    Combining Heuristics to Optimize and Scale the Placement of IoT Applications in the Fog, <a href="{{ root_url }}/downloads/talk/paper2.pdf">slides</a>
+pub_talk/index.html:        ASF Winter School, 7-10 March 2017 ( <a href="{{ root_url }}/downloads/talk/ASF-Ye_XIA.pdf">slides</a> )
+pub_talk/index.html:        <a href="https://beyondtheclouds.github.io/">Discovery</a> 3rd Plenary Meeting, 30-31 March 2017 ( <a href="{{ root_url }}/downloads/talk/Discovery_3rd-Ye_XIA.pdf">slides</a> )
